@@ -25,5 +25,10 @@ namespace RedisCache
         {
             return base.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"Id: {this.Id}, Data: {this.Data}";
+        }
     }
 }

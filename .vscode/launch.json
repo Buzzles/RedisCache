@@ -9,7 +9,7 @@
             "program": "${workspaceRoot}\\src\\RedisCache\\bin\\Debug\\netcoreapp1.0\\RedisCache.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
-            "externalConsole": false,
+            "externalConsole": true,
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
         },

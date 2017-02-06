@@ -18,6 +18,22 @@ namespace RedisCache
             var value = cacher.Get("key1");
 
             Console.WriteLine($"Get key1 returns: {value}");
+            Console.ReadKey();
+
+            Console.WriteLine("Adding an object");
+
+            var simpleObj = new SimpleDomainObject
+            {
+                Id = Guid.NewGuid(),
+                Data = ""
+            };
+
+            var setKey = "SetKey1";
+            cacher.SetAdd(setKey, simpleObj);
+
+            Console.WriteLine($"Getting object with key:{setKey} and Id:{simpleObj.Id}");
+            var outObj = cacher.SetGet<SimpleDomainObject>(setKey, simpleObj.Id);
+            Console.WriteLine($"Object contents: {outObj.ToString()}");
 
             Console.ReadKey();
         }

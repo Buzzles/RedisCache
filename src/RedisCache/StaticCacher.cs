@@ -1,8 +1,5 @@
 ﻿using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RedisCache
 {
@@ -11,7 +8,8 @@ namespace RedisCache
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(
         () =>
         {
-            return ConnectionMultiplexer.Connect("192.168.99.100:6397,abortConnect=false,ssl=true,password=...");
+            const string connectionString = "192.168.99.100:6397,abortConnect=false,ssl=true,password=sdsd";
+            return ConnectionMultiplexer.Connect(connectionString);
         });
 
         public static ConnectionMultiplexer Connection

@@ -26,7 +26,7 @@ public class Cacher : ICacher
 
     public void Expire(string key)
     {
-        throw new NotImplementedException();
+        _db.KeyExpire(key, new TimeSpan(0L));
     }
 
     public string Get(string key)
@@ -45,8 +45,7 @@ public class Cacher : ICacher
     public void SetAdd<T>(string cacheKey, T simpleObj)
     {
         var serialisedObj = JsonConvert.SerializeObject(simpleObj);
-
-        Set(cacheKey, serialisedObj);
+        _db.SetAdd(cacheKey, serialisedObj);
     }
 
     public T SetGet<T>(string cacheKey, Guid id) where T : SimpleDomainObject
