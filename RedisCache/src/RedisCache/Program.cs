@@ -25,10 +25,17 @@ namespace RedisCache
             var simpleObj = new SimpleDomainObject
             {
                 Id = Guid.NewGuid(),
-                Data = ""
+                Data = "test"
             };
 
             var setKey = "SetKey1";
+            cacher.SetAdd(setKey, simpleObj);
+
+            var simpleObj2 = new SimpleDomainObject
+            {
+                Id = Guid.NewGuid(),
+                Data = "test2"
+            };
             cacher.SetAdd(setKey, simpleObj);
 
             Console.WriteLine($"Getting object with key:{setKey} and Id:{simpleObj.Id}");

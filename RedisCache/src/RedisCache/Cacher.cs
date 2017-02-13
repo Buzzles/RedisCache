@@ -57,4 +57,16 @@ public class Cacher : ICacher
 
         return item;
     }
+
+    public void HashSet(string key, object item)
+    {
+        var entry = new HashEntry("prop1", "wobble");
+        HashEntry[] hashfields = null;
+        _db.HashSet(key, hashfields);
+    }
+
+    public void HashGet(string key, Guid id)
+    {
+        var value = _db.HashGet(key, "id");
+    }
 }
