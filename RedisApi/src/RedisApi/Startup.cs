@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using RedisApi.Data;
 
 namespace RedisApi
 {
@@ -38,6 +40,9 @@ namespace RedisApi
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            var connection = @"Server=.\mssqllocaldb;Database=RedisApi.Test;Trusted_Connection=True;";
+            services.AddDbContext<Context>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
