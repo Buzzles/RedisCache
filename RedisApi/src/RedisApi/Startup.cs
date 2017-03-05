@@ -41,7 +41,9 @@ namespace RedisApi
 
             services.AddMvc();
 
-            var connection = @"Server=.\mssqllocaldb;Database=RedisApi.Test;Trusted_Connection=True;";
+            ////Configuration.GetConnectionString
+
+            var connection = @"Server=.\sqlexpress;Database=RedisApi.Test;Trusted_Connection=True;";
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
         }
 
