@@ -1,4 +1,5 @@
 ﻿using RedisApi;
+using RedisApi.Data;
 using System;
 
 public interface ICacher

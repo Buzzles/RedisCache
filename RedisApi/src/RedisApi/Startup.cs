@@ -45,6 +45,8 @@ namespace RedisApi
 
             var connection = @"Server=.\sqlexpress;Database=RedisApi.Test;Trusted_Connection=True;";
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
+
+            services.AddSingleton<ICacher>(new RedisCacher());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

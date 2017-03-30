@@ -3,14 +3,15 @@ using StackExchange.Redis;
 using Newtonsoft.Json;
 using System.Linq;
 using RedisApi;
+using RedisApi.Data;
 
-public class Cacher : ICacher
+public class RedisCacher : ICacher
 {
     private IConnectionMultiplexer _connection;
 
     private IDatabase _db;
 
-    public Cacher()
+    public RedisCacher()
     {
         var configOptions = new ConfigurationOptions();
 

@@ -2,7 +2,7 @@
 
 namespace RedisApi.Data
 {
-    public class SimpleDomainObject
+    public class SimpleDomainObject : ISimpleDomainObject
     {
         public Guid Id { get; set; }
         public string Data { get; set; }
