@@ -58,15 +58,29 @@ public class Cacher : ICacher
         return item;
     }
 
-    public void HashSet(string key, object item)
+    public void HashSet<T>(string key, T item) where T : SimpleDomainObject 
     {
-        var entry = new HashEntry("prop1", "wobble");
-        HashEntry[] hashfields = null;
+        var field1 = new HashEntry(nameof(item.Id), item.Id.ToString());
+        var field2 = new HashEntry(nameof(item.Data), item.Data);
+
+        var serialisedObj = JsonConvert.SerializeObject(item);
+        var serialisedObjHash = new HashEntry(item.Id.ToString(), serialisedObj);
+
+        HashEntry[] hashfields = new HashEntry[] { field1, field2, serialisedObjHash };
+
         _db.HashSet(key, hashfields);
     }
 
-    public void HashGet(string key, Guid id)
+    public T HashGet<T>(string key, Guid id) where T : SimpleDomainObject
     {
         var value = _db.HashGet(key, "id");
+
+        var hashSet = _db.HashGetAll(key);
+
+        var item = hashSet.Select(x => 
+                    JsonConvert.DeserializeObject<T>(x.Value.ToString()))
+                    .FirstOrDefault(y => y.Id == id);
+
+        return item;
     }
 }
